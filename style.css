@@ -1,0 +1,72 @@
+@font-face {
+	font-family: 'E1234-p7pER'; 
+	src: local('E1234-p7pER'), url(/fonts/E1234-p7pER.ttf); 
+}
+@font-face {
+	font-family: 'Uni_Sans_Heavy'; 
+	src: local('Uni_Sans_Heavy'), url(/fonts/Uni_Sans_Heavy.otf); 
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.timer_block{
+    background: #0175fd;
+    margin: 10px;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    
+}
+
+.time{
+    color: white;
+    font-size: 36px;
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+    font-family: "E1234-p7pER";
+}
+
+.buttons{
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    cursor: pointer;
+    margin: 0 auto;
+    width: 120px;
+    height: 28px;
+    appearance: none;
+    border: 0;
+    border-radius: 5px;
+    background: #efefef;
+    font-size: 14px;
+    color: #0175fd;
+    font-family: Uni_Sans_Heavy;
+    margin: 10px;
+}
+
+button:hover {
+    background: #e4e4e4;
+}
+
+
