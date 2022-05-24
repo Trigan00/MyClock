@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'E1234-p7pER'; 
-	src: local('E1234-p7pER'), url(/fonts/E1234-p7pER.ttf); 
+	src: local('E1234-p7pER'), url(./fonts/E1234-p7pER.ttf); 
 }
 @font-face {
 	font-family: 'Uni_Sans_Heavy'; 
-	src: local('Uni_Sans_Heavy'), url(/fonts/Uni_Sans_Heavy.otf); 
+	src: local('Uni_Sans_Heavy'), url(./fonts/Uni_Sans_Heavy.otf); 
 }
 
 body{
