@@ -6,46 +6,36 @@ const hourElement = document.querySelector('.hour');
 const StartEl = document.querySelector('.Start');
 const PauseEl = document.querySelector('.Stop');
 
-let millisecond = 0, second = 0, minute = 0, hour = 0, interval
-let keepGoing = false
-let startDate
+let elapsed = 0;
+let startedAt = null;
+let frameId = null;
+
+function render(time) {
+    const hundredths = Math.floor(time / 10);
+    millisecondElement.textContent = String(hundredths % 100).padStart(2, '0');
+    secondElement.textContent = String(Math.floor(hundredths / 100) % 60).padStart(2, '0');
+    minuteElement.textContent = String(Math.floor(hundredths / 6000) % 60).padStart(2, '0');
+    hourElement.textContent = String(Math.floor(hundredths / 360000)).padStart(2, '0');
+}
+
+function tick() {
+    render(elapsed + performance.now() - startedAt);
+    frameId = requestAnimationFrame(tick);
+}
 
 StartEl.addEventListener('click', () => {
-        keepGoing = true     
-        startDate = new Date();
-        timer()    
-})
+    if (startedAt !== null) return;
+    startedAt = performance.now();
+    tick();
+});
+
 PauseEl.addEventListener('click', () => {
-    keepGoing = false
-})
-    
-function timer(){
-    
-    millisecondElement.innerText = millisecond < 10 ? '0' + millisecond : millisecond
-    secondElement.innerText = second < 10 ? '0' + second : second
-    minuteElement.innerText = minute < 10 ? '0' + minute : minute
-    hourElement.innerText = hour < 10 ? '0' + hour : hour
+    if (startedAt === null) return;
+    elapsed += performance.now() - startedAt;
+    startedAt = null;
+    cancelAnimationFrame(frameId);
+    frameId = null;
+    render(elapsed);
+});
 
-    let cdateObj = new Date();
-    let time = (cdateObj.getTime() - startDate.getTime())
-
-    millisecond = time % 1000;
-    time -= millisecond;
-    millisecond = Math.floor(millisecond / 10);
-    time = Math.floor (time / 1000);
-
-    second = time % 60;
-    time -= second;
-    time = Math.floor (time / 60);
-
-    minute = time % 60;
-    time -= minute;
-    time = Math.floor (time/60);
-    
-    hour = time % 60;
-    
-    if(keepGoing){
-        setTimeout(() => timer())  
-    }
-      
-}
+render(elapsed);
